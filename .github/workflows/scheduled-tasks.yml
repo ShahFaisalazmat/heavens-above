@@ -1,0 +1,28 @@
+name: Scheduled Maintenance
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Runs daily at 2 AM
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run database cleanup
+      run: |
+        echo "Running database maintenance..."
+        # Add your maintenance scripts here
+        
+    - name: Backup data
+      run: |
+        echo "Creating data backup..."
+        # Add backup commands here
+        
+    - name: Send notification
+      run: |
+        echo "Scheduled maintenance completed successfully"
