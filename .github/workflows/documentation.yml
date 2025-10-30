@@ -1,0 +1,32 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '*.md'
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+      
+    - name: Build documentation
+      run: |
+        echo "Building documentation..."
+        # Add documentation build commands here
+        
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: './docs/_build'
+        
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v2
