@@ -1,0 +1,28 @@
+name: Code Review Assistant
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check code style
+      run: |
+        pip install flake8
+        flake8 . --count --max-complexity=10 --statistics
+        
+    - name: Check for security issues
+      run: |
+        echo "Running security checks..."
+        # Add security scanning tools here
+        
+    - name: Code complexity analysis
+      run: |
+        echo "Analyzing code complexity..."
+        # Add complexity analysis tools here
